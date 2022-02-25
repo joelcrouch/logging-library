@@ -9,20 +9,15 @@
  * @module
  */
 
-/* This is a dummy definition just so that this file has at
- * least one export, which is required for the test suite to
- * run. Delete this once you've defined at least one export of
- * your own in this file.
- */
 export enum Level {
-    error,
-    warning,
-    info,
-    debug,
+    error = "error",
+    warning = "warning",
+    info = "info",
+    debug = "debug",
 }
 export enum StatusCode{
-    ON,
-    OFF,
+    ON = "ON",
+    OFF = "OFF",
 }
 export class Logger {
     constructor() {
@@ -43,36 +38,51 @@ export class Logger {
         console.log(this.warningLevel);
     }
 
-    turnOff(onOrOff: string, responseLevel: string) :void {
+    turnON(onOrOff: StatusCode, responseLevel: Level) :void {
         if (responseLevel === "error") {
             if (onOrOff === "ON")
-                this.errorLevel = StatusCode.OFF;
+                this.errorLevel = StatusCode.ON;
         }
         if (responseLevel === "info") {
             if (onOrOff === "ON")
-                this.informationalLevel = StatusCode.OFF;
+                this.informationalLevel = StatusCode.ON;
         }
         if (responseLevel === "debug") {
             if (onOrOff === "ON")
-                this.debugLevel = StatusCode.OFF;
+                this.debugLevel = StatusCode.ON;
         }
         if (responseLevel === "warning") {
             if (onOrOff === "ON")
+                this.warningLevel = StatusCode.ON;
+        }
+    }
+    turnOff(onOrOff: StatusCode, responseLevel: Level) :void {
+        if (responseLevel === "error") {
+            if (onOrOff === "OFF")
+                this.errorLevel = StatusCode.OFF;
+        }
+        if (responseLevel === "info") {
+            if (onOrOff === "OFF")
+                this.informationalLevel = StatusCode.OFF;
+        }
+        if (responseLevel === "debug") {
+            if (onOrOff === "OFF")
+                this.debugLevel = StatusCode.OFF;
+        }
+        if (responseLevel === "warning") {
+            if (onOrOff === "OFF")
                 this.warningLevel = StatusCode.OFF;
         }
     }
-    messageLevel : boolean [] = [ false, false, false, false ];
-    //informational, error, warning, debug//
 
-    configureOn(chooseMessageLevel :string) : void {
-        if (chooseMessageLevel === "error")
-            this.messageLevel[1] = true;
-        else if (chooseMessageLevel === "info")
-            this.messageLevel[0] = true;
-        else if (chooseMessageLevel === "warning")
-            this.messageLevel[2] = true;
-        else if (chooseMessageLevel === "debug")
-            this.messageLevel[2] = true;
+    printMessage(input : string) : void {
+        if (this.errorLevel === "ON")
+            console.error(input);
+        else if (this.informationalLevel === "ON")
+            console.info(input);
+        else if (this.debugLevel === "ON")
+            console.debug(input);
+        else if (this.warningLevel === "ON")
+            console.warn(input);
     }
 }
-export const dummy = 0;

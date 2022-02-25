@@ -14,37 +14,65 @@
  * run. Delete this once you've defined at least one export of
  * your own in this file.
  */
+export enum Level {
+    error,
+    warning,
+    info,
+    debug,
+}
 export enum StatusCode{
     ON,
     OFF,
 }
-export class logger {
+export class Logger {
     constructor() {
-        this.errorLevel = StatusCode.ON;
-        this.warningLevel = StatusCode.ON;
-        this.informationalLevel = StatusCode.ON;
-        this.debugLevel = StatusCode.ON;
+        this.errorLevel = StatusCode.OFF;
+        this.warningLevel = StatusCode.OFF;
+        this.informationalLevel = StatusCode.OFF;
+        this.debugLevel = StatusCode.OFF;
     }
     errorLevel : StatusCode;
     warningLevel : StatusCode;
     informationalLevel : StatusCode;
     debugLevel : StatusCode;
-    //at instantation the logger is configured 
-    //each logger has a "write member" the write member is  a function
-    //each logger has all the levels of logging
-    //each logger can be configured to turn on/off logging
-    displayLoggingLevel(){
+
+    displayLoggingLevel() :void {
         console.log(this.errorLevel);
         console.log(this.informationalLevel);
         console.log(this.debugLevel);
         console.log(this.warningLevel);
-
     }
-    config(x: number) :void {
-        if (x=1)
-            this.errorLevel = StatusCode.ON;
-        if (x=2)    
-            this.
+
+    turnOff(onOrOff: string, responseLevel: string) :void {
+        if (responseLevel === "error") {
+            if (onOrOff === "ON")
+                this.errorLevel = StatusCode.OFF;
+        }
+        if (responseLevel === "info") {
+            if (onOrOff === "ON")
+                this.informationalLevel = StatusCode.OFF;
+        }
+        if (responseLevel === "debug") {
+            if (onOrOff === "ON")
+                this.debugLevel = StatusCode.OFF;
+        }
+        if (responseLevel === "warning") {
+            if (onOrOff === "ON")
+                this.warningLevel = StatusCode.OFF;
+        }
+    }
+    messageLevel : boolean [] = [ false, false, false, false ];
+    //informational, error, warning, debug//
+
+    configureOn(chooseMessageLevel :string) : void {
+        if (chooseMessageLevel === "error")
+            this.messageLevel[1] = true;
+        else if (chooseMessageLevel === "info")
+            this.messageLevel[0] = true;
+        else if (chooseMessageLevel === "warning")
+            this.messageLevel[2] = true;
+        else if (chooseMessageLevel === "debug")
+            this.messageLevel[2] = true;
     }
 }
 export const dummy = 0;

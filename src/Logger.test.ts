@@ -1,5 +1,5 @@
 import "jest-extended";
-import { } from "./Logger";
+import { Logger } from "./Logger";
 
 /* This function is used in the test below to demonstrate how to
  * write tests that check for correct console output. When you
@@ -10,6 +10,34 @@ function exampleFunctionUsingConsole(): void {
     console.info("test1");
     console.info("test2");
 }
+test("show displayLoggingLevel works as predicted-no configuration", () => {
+    const infoLogOutput: string[] = [];
+    const log1 = new Logger();
+    jest.spyOn(global.console, "log").mockImplementation((msg: string) => {
+        infoLogOutput.push(msg);
+    });
+    log1.displayLoggingLevel();
+    // eslint-disable-next-line max-len
+    expect(infoLogOutput).toStrictEqual([ "ERROR LEVEL is OFF",
+        "WARNING LEVEL is OFF",
+        "INFORMATIONAL LEVEL is OFF",
+        "DEBUG LEVEL is OFF" ]);
+});
+
+test("show displayLoggingLevel works as predicted-with configuration", () => {
+    const infoLogOutput: string[] = [];
+    const log1 = new Logger();
+    log1.turnON("ON", "error");
+    jest.spyOn(global.console, "log").mockImplementation((msg: string) => {
+        infoLogOutput.push(msg);
+    });
+    log1.displayLoggingLevel();
+    // eslint-disable-next-line max-len
+    expect(infoLogOutput).toStrictEqual([ "ERROR LEVEL is ON",
+        "WARNING LEVEL is OFF",
+        "INFORMATIONAL LEVEL is OFF",
+        "DEBUG LEVEL is OFF" ]);
+});
 
 test("example to show how to test console output", () => {
     // Create an array to store the console output.

@@ -1,6 +1,15 @@
 /**
  * This is the module documentation comment for the Logger
- * module. You should replace this text with your own
+ * module.
+ * The logger class is mutable.  A logger can be configured to have each
+ * of the console methods turned on or off.
+ *
+ * The API uses the following methods: displayLoggingLevel, turnON,turnOff,
+ * and printMessage.  When a logger is instantiated, the default function for
+ * logging is turned off.  Each console function can be individually configured.
+ *
+ *
+ * You should replace this text with your own
  * documentation. Do not remove the "@module" directive at the
  * bottom of this comment, however: it tells TypeDoc that this
  * is a documentation comment for this whole module, not just
@@ -30,7 +39,19 @@ export class Logger {
     warningLevel : number;
     informationalLevel : number;
     debugLevel : number;
-
+    /** Method:     displayLoggingLevel
+     *  Usage:      Displays the console methods that are available in the
+     *              current iteration of the logger.
+     *  Example:    Logger log1; (All the console methods are turned off
+     *              by default.)
+     *              log1.displayLoggingLevel();
+     *              output:
+     *              ERROR LEVEL is OFF
+     *              WARNING LEVEL is OFF
+     *              INFORMATIONAL LEVEL is OFF
+     *              DEBUG LEVEL is OFF
+     * @module
+     */
     displayLoggingLevel() :void {
         if (this.errorLevel === 0)
             console.log("ERROR LEVEL is OFF");
@@ -45,40 +66,96 @@ export class Logger {
             console.log("DEBUG LEVEL is OFF");
         else console.log("DEBUG LEVEL is ON");
     }
-
-    turnON(onOrOff: string, responseLevel: string) :void {
+    /** Method:     .turnON(ON: string, responseLevel: string)
+     *  Usage:      Configures the console methods to turn the assigned method
+     *              on.  The method takes in a string value for ON, it must be
+     *              a string value of "ON."  The other parameter is the console
+     *              method name: "error", "info", "warning", "debug".  These
+     *              string values are the only values that are supported.
+     *  Example:    Logger log1; (All the console methods are turned off
+     *              by default.)
+     *              log1.displayLoggingLevel();
+     *              output:
+     *              ERROR LEVEL is OFF
+     *              WARNING LEVEL is OFF
+     *              INFORMATIONAL LEVEL is OFF
+     *              DEBUG LEVEL is OFF
+     *
+     *              log1.turnON("ON", "error");
+     *              log1.displayLoggingLevel();
+     *              output:
+     *              ERROR LEVEL is ON
+     *              WARNING LEVEL is OFF
+     *              INFORMATIONAL LEVEL is OFF
+     *              DEBUG LEVEL is OFF
+     * @module
+     */
+    turnON(ON: string, responseLevel: string) :void {
         if (responseLevel === "error") {
-            if (onOrOff === "ON")
+            if (ON === "ON")
                 this.errorLevel = 1;
         }
         if (responseLevel === "info") {
-            if (onOrOff === "ON")
+            if (ON === "ON")
                 this.informationalLevel = 1;
         }
         if (responseLevel === "debug") {
-            if (onOrOff === "ON")
+            if (ON === "ON")
                 this.debugLevel = 1;
         }
         if (responseLevel === "warning") {
-            if (onOrOff === "ON")
+            if (ON === "ON")
                 this.warningLevel = 1;
         }
     }
-    turnOff(onOrOff: string, responseLevel: string) :void {
+    /** Method:     .turnOff(Off: string, responseLevel: string)
+     *  Usage:      Configures the console methods to turn the assigned method
+     *              off.  The method takes in a string value for ON, it must be
+     *              a string value of "OFF."  The other parameter is the console
+     *              method name: "error", "info", "warning", "debug".  These
+     *              string values are the only values that are supported.
+     *  Example:    Logger log1; (All the console methods are turned off
+     *              by default.)
+     *              log1.displayLoggingLevel();
+     *              output:
+     *              ERROR LEVEL is OFF
+     *              WARNING LEVEL is OFF
+     *              INFORMATIONAL LEVEL is OFF
+     *              DEBUG LEVEL is OFF
+     *
+     *              log1.turnON("ON", "error");
+     *              log1.turnON("ON", "warning");
+     *              log1.displayLoggingLevel();
+     *              output:
+     *              ERROR LEVEL is ON
+     *              WARNING LEVEL is ON
+     *              INFORMATIONAL LEVEL is OFF
+     *              DEBUG LEVEL is OFF
+     *
+     *              log1.turnON("OFF", "warning");
+     *              log1.displayLoggingLevel();
+     *              output:
+     *              ERROR LEVEL is ON
+     *              WARNING LEVEL is OFF
+     *              INFORMATIONAL LEVEL is OFF
+     *              DEBUG LEVEL is OFF
+     * @module
+     */
+    turnOff(Off: string, responseLevel: string) :void {
         if (responseLevel === "error") {
-            if (onOrOff === "OFF")
+            if (Off === "OFF")
                 this.errorLevel = 0;
         }
         if (responseLevel === "info") {
-            if (onOrOff === "OFF")
+            if (Off === "OFF")
                 this.informationalLevel = 0;
         }
         if (responseLevel === "debug") {
-            if (onOrOff === "OFF")
+            if (Off === "OFF")
                 this.debugLevel = 0;
         }
         if (responseLevel === "warning") {
-            if (onOrOff === "OFF")
+            if (Off === "OFF")
                 this.warningLevel = 0;
         }
     }

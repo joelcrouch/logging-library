@@ -28,7 +28,7 @@ export class Logger {
     warningLevel : number;
     informationalLevel : number;
     debugLevel : number;
-    /** Method:     displayLoggingLevel
+    /** Method:     .displayLoggingLevel
      *  Usage:      Displays the console methods that are available in the
      *              current iteration of the logger.
      *  Example:    Logger log1; (All the console methods are turned off
@@ -148,7 +148,18 @@ export class Logger {
                 this.warningLevel = 0;
         }
     }
-
+    /** Method:     .printMessage
+     *  Usage:      Displays console messages that are available in the
+     *              current iteration of the logger.
+     *  Example:    Logger log1; (All the console methods are turned off
+     *              by default.)
+     *              log1.displayLoggingLevel();
+     *              log1.turnOn("ON", "debug");
+     *              log1.printMessage("test1");
+     *              output:
+     *              DEBUG: test1
+     * @module
+     */
     printMessage(input : string) : void {
         if (this.errorLevel === 1)
             console.error("ERROR:" + input);

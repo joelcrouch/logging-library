@@ -8,13 +8,6 @@
  * and printMessage.  When a logger is instantiated, the default function for
  * logging is turned off.  Each console function can be individually configured.
  *
- *
- * You should replace this text with your own
- * documentation. Do not remove the "@module" directive at the
- * bottom of this comment, however: it tells TypeDoc that this
- * is a documentation comment for this whole module, not just
- * for some individual definition in the module.
- *
  * @module
  */
 export class Logger {

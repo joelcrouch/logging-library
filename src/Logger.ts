@@ -17,17 +17,6 @@
  *
  * @module
  */
-
-export enum Level {
-    error = "error",
-    warning = "warning",
-    info = "info",
-    debug = "debug",
-}
-export enum StatusCode{
-    ON = "ON",
-    OFF = "OFF",
-}
 export class Logger {
     constructor() {
         this.errorLevel = 0;

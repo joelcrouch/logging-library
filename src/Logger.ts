@@ -21,68 +21,76 @@ export enum StatusCode{
 }
 export class Logger {
     constructor() {
-        this.errorLevel = StatusCode.OFF;
-        this.warningLevel = StatusCode.OFF;
-        this.informationalLevel = StatusCode.OFF;
-        this.debugLevel = StatusCode.OFF;
+        this.errorLevel = 0;
+        this.warningLevel = 0;
+        this.informationalLevel = 0;
+        this.debugLevel = 0;
     }
-    errorLevel : StatusCode;
-    warningLevel : StatusCode;
-    informationalLevel : StatusCode;
-    debugLevel : StatusCode;
+    errorLevel : number;
+    warningLevel : number;
+    informationalLevel : number;
+    debugLevel : number;
 
     displayLoggingLevel() :void {
-        console.log(this.errorLevel);
-        console.log(this.informationalLevel);
-        console.log(this.debugLevel);
-        console.log(this.warningLevel);
+        if (this.errorLevel === 0)
+            console.log("ERROR LEVEL is OFF");
+        else console.log("ERROR LEVEL is ON");
+        if (this.warningLevel === 0)
+            console.log("WARNING LEVEL is OFF");
+        else console.log("WARNING LEVEL is ON");
+        if (this.informationalLevel === 0)
+            console.log("INFORMATIONAL LEVEL is OFF");
+        else console.log("INFORMATIONAL LEVEL is ON");
+        if (this.debugLevel === 0)
+            console.log("DEBUG LEVEL is OFF");
+        else console.log("DEBUG LEVEL is ON");
     }
 
-    turnON(onOrOff: StatusCode, responseLevel: Level) :void {
+    turnON(onOrOff: string, responseLevel: string) :void {
         if (responseLevel === "error") {
             if (onOrOff === "ON")
-                this.errorLevel = StatusCode.ON;
+                this.errorLevel = 1;
         }
         if (responseLevel === "info") {
             if (onOrOff === "ON")
-                this.informationalLevel = StatusCode.ON;
+                this.informationalLevel = 1;
         }
         if (responseLevel === "debug") {
             if (onOrOff === "ON")
-                this.debugLevel = StatusCode.ON;
+                this.debugLevel = 1;
         }
         if (responseLevel === "warning") {
             if (onOrOff === "ON")
-                this.warningLevel = StatusCode.ON;
+                this.warningLevel = 1;
         }
     }
-    turnOff(onOrOff: StatusCode, responseLevel: Level) :void {
+    turnOff(onOrOff: string, responseLevel: string) :void {
         if (responseLevel === "error") {
             if (onOrOff === "OFF")
-                this.errorLevel = StatusCode.OFF;
+                this.errorLevel = 0;
         }
         if (responseLevel === "info") {
             if (onOrOff === "OFF")
-                this.informationalLevel = StatusCode.OFF;
+                this.informationalLevel = 0;
         }
         if (responseLevel === "debug") {
             if (onOrOff === "OFF")
-                this.debugLevel = StatusCode.OFF;
+                this.debugLevel = 0;
         }
         if (responseLevel === "warning") {
             if (onOrOff === "OFF")
-                this.warningLevel = StatusCode.OFF;
+                this.warningLevel = 0;
         }
     }
 
     printMessage(input : string) : void {
-        if (this.errorLevel === "ON")
-            console.error(input);
-        else if (this.informationalLevel === "ON")
-            console.info(input);
-        else if (this.debugLevel === "ON")
-            console.debug(input);
-        else if (this.warningLevel === "ON")
-            console.warn(input);
+        if (this.errorLevel === 1)
+            console.error("ERROR:" + input);
+        else if (this.informationalLevel === 1)
+            console.info("INFORMATIONAL:" + input);
+        else if (this.debugLevel === 1)
+            console.debug("DEBUG:" + input);
+        else if (this.warningLevel === 1)
+            console.warn("WARNING:" + input);
     }
 }

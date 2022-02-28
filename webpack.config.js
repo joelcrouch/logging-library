@@ -9,6 +9,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: "bundle.js",
+    library: "Logger",
   },
   resolve: {
     // Add ".ts" and ".tsx" as resolvable extensions.

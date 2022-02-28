@@ -163,4 +163,13 @@ export class Logger {
         else if (this.warningLevel === 1)
             console.warn("WARNING:" + input);
     }
+    /* Function needs better implementation
+    checkTurnOn(onOrOff: string, level : string) : boolean {
+        if (onOrOff !== "ON")
+            return false;
+        if ((level !== "debug") || (level !== "info") ||
+            (level !== "warn") || (level !== "error"))
+            return false;
+        return true;
+    }*/
 }
